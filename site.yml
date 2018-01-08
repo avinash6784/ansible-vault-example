@@ -1,0 +1,17 @@
+---
+
+- hosts: localhost
+  become: true
+  tasks:
+
+  - name: Get the variables
+    include_vars: vars.yml 
+
+  - name: Get the vault variables
+    include_vars: vault.yml 
+
+  - name: Change user "{{ username }}" password
+    user: 
+      name: "{{ username }}"
+      update_password: always 
+      password: "{{ password }}"
